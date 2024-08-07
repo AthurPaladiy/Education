@@ -6,11 +6,13 @@ def approved(recipient, sender):
     approve = False
     if email_mark in recipient and email_mark in sender:
         for i in range(len(approved_domains)):
-            if approved_domains[i] in recipient:
+            if recipient.endswith(approved_domains[i]):
                 correct_domains_recipient = True
+                break
         for i in range(len(approved_domains)):
-            if approved_domains[i] in sender:
+            if sender.endswith(approved_domains[i]):
                 correct_domains_sender = True
+                break
         if correct_domains_recipient and correct_domains_sender:
             approve = True
     return approve
